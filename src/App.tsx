@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import './css/App.css';
+import {Character} from "./CharacterModel";
+import CharacterGallery from "./CharacterGallery";
+import axios from "axios";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
+
 
 function App() {
-  return (
+    const [characterList, setCharacterList] = useState([])
+    const [filterName, setFilterName] = useState("")
+
+
+    useEffect(() => {
+        axios.get("https://rickandmortyapi.com/api/character")
+            .then(response => {
+                return response.data
+            })
+            .catch((error) => console.log("URL not available: " + error))
+            .then((data) => {
+                setCharacterList(data.results)
+            })
+    }, []);
+
+    const getFilterName = (nameToFilter:string) => {
+        setFilterName(nameToFilter);
+        console.log(nameToFilter)
+        // return nameToFilter;
+    }
+
+    if(filterName) {
+        setCharacterList(characterList.filter((character: Character) => character.name === filterName))
+    }
+
+    //Try: render FilterInput here already
+    return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        Rick and Morty Characters
       </header>
+        <main>
+            <CharacterGallery characterList={characterList} callback={getFilterName}/>
+        </main>
     </div>
   );
 }
