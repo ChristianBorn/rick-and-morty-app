@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {Character} from "./CharacterModel";
 import "./css/characterCard.css"
 
@@ -25,6 +26,7 @@ export default function CharacterCard(props: { character: Character }) {
             <img src={props.character.image}></img>
             <p>Origin: <strong>{originLink}</strong></p>
             <p className={classNameStatus}>Status: <strong>{props.character.status}</strong></p>
+            <Link to={"/character/"+props.character.id}>Details</Link>
         </div>
     );
 }

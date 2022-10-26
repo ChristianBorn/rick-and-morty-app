@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState} from 'react';
 
 type filterInputProps = {
     callback: (name:string) => void
@@ -6,26 +6,30 @@ type filterInputProps = {
 
 function FilterInput(props: filterInputProps) {
 
-    // const [name, setName] = useState("");
+    const [name, setName] = useState("");
 
-    // const handleSubmit = (event: { preventDefault: () => void; }) => {
-    //     event.preventDefault();
-    //     return name;
-    // }
 
+    const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value)
+    }
+    
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        props.callback(name)
+    }
 
 
     return (
-        // <form onSubmit={handleSubmit}>
-        <>
-                <input
+
+        <form onSubmit={handleSubmit}>
+                <input value={name}
                     type="text"
-                    onChange={(e) => props.callback(e.target.value)}
+                    onChange={onTextChange}
 
                 />
-            {/*<input type="submit" />*/}
-        </>
-        // </form>
+
+        </form>
+
     )
 }
 
