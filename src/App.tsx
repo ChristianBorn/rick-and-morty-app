@@ -13,13 +13,13 @@ function App() {
     const [locationList, setLocationList] = useState([])
 
     const getCharacters = () => {
-        axios.get("https://rickandmortyapi.com/api/character")
+        axios.get("/api/characters")
             .then(response => {
                 return response.data
             })
             .catch((error) => console.log("URL not available: " + error))
             .then((data) => {
-                setCharacterList(data.results)
+                setCharacterList(data)
     })
     }
 
@@ -57,7 +57,7 @@ function App() {
         <main>
 
                 <Routes>
-                    <Route path="/" 
+                    <Route path="/"
                            element={<CharacterGallery characterList={characterList} callback={getFilterName}/>}/>
                         <Route path="/character/:id" 
                                element={<CharacterDetailPage characterList={characterList}/>}/>

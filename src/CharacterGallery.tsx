@@ -11,8 +11,8 @@ export default function CharacterGallery(props: {
     return (
         <>
         <FilterInput callback={props.callback}/>
-        <div className={"character-gallery"}>
 
+            <div className={"character-gallery"}>
             {
                 props.characterList.map(singleCharacter => <CharacterCard character={singleCharacter}
                                                                           key={singleCharacter.id}/>)
