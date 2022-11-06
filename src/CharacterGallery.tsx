@@ -1,4 +1,4 @@
-import {Character} from "./CharacterModel";
+import {Character} from "./model/CharacterModel";
 import CharacterCard from "./CharacterCard";
 import "./css/characterGallery.css"
 import FilterInput from "./FilterInput";

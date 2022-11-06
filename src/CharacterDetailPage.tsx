@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Character} from "./CharacterModel";
+import {Character} from "./model/CharacterModel";
 import {Link, useParams } from 'react-router-dom';
 
 
@@ -25,11 +24,11 @@ function CharacterDetailPage(props: CharacterDetailProps) {
             <div className={"character-detail"}>
                 <h2>{characterToDisplay.name}</h2>
                 <p >Status: <strong>{characterToDisplay.status}</strong></p>
-                <img src={characterToDisplay.image}></img>
+                <img alt={characterToDisplay.name} src={characterToDisplay.image}></img>
                 <p>Species: <strong>{characterToDisplay.species}</strong></p>
                 <p>Type: <strong>{characterToDisplay.type}</strong></p>
                 <p>Gender: <strong>{characterToDisplay.gender}</strong></p>
-                <p>Origin: <Link to={"../"+"../"+originUrlSegment} replace>{characterToDisplay.origin.name}</Link></p>
+                <p>Origin: <Link to={"../../"+originUrlSegment} replace>{characterToDisplay.origin.name}</Link></p>
                 <p>Last known location: <strong>{characterToDisplay.location.name}, {characterToDisplay.location.url}</strong></p>
                 <ul><strong>Seen in Episodes:</strong>
                     {characterToDisplay.episode.map((episode) => {

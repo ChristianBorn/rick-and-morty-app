@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {Character} from "./CharacterModel";
+import {Character} from "./model/CharacterModel";
 import "./css/characterCard.css"
 
 export default function CharacterCard(props: { character: Character }) {
@@ -23,7 +23,7 @@ export default function CharacterCard(props: { character: Character }) {
     return (
         <div className={"character-card"}>
             <h2>{props.character.name}</h2>
-            <img src={props.character.image}></img>
+            <img alt={props.character.name} src={props.character.image}></img>
             <p>Origin: <strong>{originLink}</strong></p>
             <p className={classNameStatus}>Status: <strong>{props.character.status}</strong></p>
             <Link to={"/character/"+props.character.id}>Details</Link>

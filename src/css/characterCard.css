@@ -6,6 +6,7 @@
     border-left: #282c34 1px solid;
     border-right: #282c34 1px solid;
     border-bottom: #282c34 1px solid;
+    padding-bottom: 25px;
 }
 .character-card .red {
     color: red;
